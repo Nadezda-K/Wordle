@@ -65,5 +65,5 @@ func GetWords(id int) (string, []string) {
 		return "",[]string{}
 	} 
 
-	return words[id-1], words
+	return words[id], words
 }
