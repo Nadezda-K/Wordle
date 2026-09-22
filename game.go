@@ -49,6 +49,10 @@ func DeleteFromRemainig(ch string){
 			RemainingLetters = append(RemainingLetters[:i], RemainingLetters[i+1:]...)
 		}
 	}
+
+	// if inSecret == false {
+    // 	DeleteFromRemainig(string(ch))
+	// }
 }
 
 func ColorLetters(guess string, secret string) string {

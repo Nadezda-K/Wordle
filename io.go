@@ -46,7 +46,7 @@ func GetWords(id int) (string, []string) {
 	fileScanner := bufio.NewScanner(file)
 	var words[] string
 	for fileScanner.Scan() {
-		words = append(words, strings.TrimSpace(fileScanner.Text()) )
+		words = append(words, strings.TrimSpace(fileScanner.Text()))
 
 	}
 
@@ -63,5 +63,5 @@ func GetWords(id int) (string, []string) {
 		return "",[]string{}
 	} 
 
-	return words[id-1], words
+	return words[id], words
 }
