@@ -45,7 +45,7 @@ func main() {
 		wordGuess = getInput(scanner)
 
 		if wordGuess == wordSecret {
-			fmt.Println("Congratulations! You've guessed the word correctrly")
+			fmt.Println("Congratulations! You've guessed the word correctly.")
 			winSatuts = "win"
 			break
 		}
@@ -63,7 +63,7 @@ func main() {
 			fmt.Printf("Feedback: %s\n", wordFeedback)
 			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
 			fmt.Printf("Remaining letters: %s\n", remainingStr)
-			fmt.Printf("Attemps remaining: %d\n", idAttemps-i)
+			fmt.Printf("Attempts remaining:  %d\n", idAttemps-i)
 		}
 		numberOfAttempts++
 	}
@@ -138,13 +138,16 @@ func GetStats(user string, statFile string ) {
 				temp, _ = strconv.ParseFloat( userLine[2], 64 )
 				avgAttemps += temp
 			}
-			avgAttemps /= float64(gamesNumber)
 		}
 
+	if gamesNumber > 0 {
+		avgAttemps /= float64(gamesNumber)
+	}
+
 		fmt.Printf("Stats for %s:\n", user)
-		fmt.Printf("Games played: %d:\n", gamesNumber)
-		fmt.Printf("Games won: %d:\n", wonNumber)
-		fmt.Printf("Average attempts per game: %f:\n", avgAttemps)
+		fmt.Printf("Games played: %d\n", gamesNumber)
+		fmt.Printf("Games won: %d\n", wonNumber)
+		fmt.Printf("Average attempts per game: %.2f\n", avgAttemps)
 		
         //return statistics
 
