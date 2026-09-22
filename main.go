@@ -53,6 +53,7 @@ func main() {
 		is_valid := CheckValidWord(wordGuess, validWords)
 		if !is_valid {
 			i--
+			continue
 		}
 
 		wordFeedback := ColorLetters(wordGuess, wordSecret)
