@@ -34,14 +34,14 @@ func main() {
 
 
 
-	fmt.Printf("Welcome to Wordle! Guess the 5-letter word.\n")
+	fmt.Printf(" Welcome to Wordle! Guess the 5-letter word.\n")
 	
 	var wordGuess string
 	winSatuts := "loss"
 	numberOfAttempts := 1
 	idAttemps := 6
 	for i:=1; i<=idAttemps; i++ {
-		fmt.Printf("Enter your guess: ")
+		fmt.Printf("Enter your guess:")
 		wordGuess = getInput(scanner)
 
 		if wordGuess == wordSecret {
