@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-//	"strconv"
+	"strconv"
 	"strings"
 )
 
@@ -26,20 +26,18 @@ var RemainingLetters = []string{
 func main() {
 	idSecret := CheckArguments(os.Args)
 	wordSecret, validWords := GetWords(idSecret)
-	fmt.Println(wordSecret)
 
 	scanner := bufio.NewScanner(os.Stdin)
 	
 	fmt.Println("Enter your username:")
-
 	username := getInput(scanner)
-	fmt.Println("Username is", username)
-
 
 	fmt.Println("Welcome to Wordle! Guess the 5-letter word.")
 	
 	var wordGuess string
-	idAttemps := 2
+	winSatuts := "loss"
+	numberOfAttempts := 1
+	idAttemps := 1
 	for i:=1; i<=idAttemps; i++ {
 		fmt.Printf("Enter your guess: ")
 		wordGuess = getInput(scanner)
@@ -47,6 +45,7 @@ func main() {
 
 		if wordGuess == wordSecret {
 			fmt.Println("Congratulations! You've guessed the word correctrly")
+			winSatuts = "win"
 			break
 		}
 
@@ -62,12 +61,86 @@ func main() {
 			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
 			fmt.Printf("Remaining letters: %s\n", remainingStr)
 			fmt.Printf("Attemps remaining: %d\n", idAttemps-i)
-		}		
+		}
+		numberOfAttempts++
 	}
 
+	// Open file, create it if it does not.
+	fileName := "stats.csv"
+	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0660)
+    if err != nil {
+        fmt.Println(Red+"Error opening/creating file"+Reset, err)
+        return
+    }
+    defer file.Close()
 
-	fmt.Printf("Do you want to see your stats? (yes/no):")
+	gameStat := username + ","
+	gameStat += wordSecret + "," 
+	gameStat += strconv.Itoa(numberOfAttempts) + ","
+	gameStat += winSatuts + "\n"
+	fmt.Fprintf(file, gameStat)
+
+
+
+	fmt.Printf("Do you want to see your stats? (yes/no): ")
 	statAnswer := getInput(scanner)
-	fmt.Printf("%s\n",statAnswer)
+	
+	if statAnswer == "yes" {
+		GetStats(username, fileName)
+	}
+	
+	fmt.Printf("Press Enter to exit...\n")
+	for {
+		getInput(scanner)
+		os.Exit(0)
+	}
+
+}
+
+
+func GetStats(user string, statFile string ) {
+	    // Open the file in read-only mode.
+        file, err := os.Open(statFile)
+        if err != nil {
+                fmt.Println(Red+"Error opening file:"+Reset, err)
+          }
+        defer file.Close()
+
+		fileScanner := bufio.NewScanner(file)
+		if !fileScanner.Scan() {
+			if fileScanner.Err() != nil {
+				fmt.Println(Red+"Error reading file with word's list:"+Reset, fileScanner.Err())
+			}
+			os.Exit(0)
+		}
+
+		var statistics []string
+		for fileScanner.Scan() {
+			statistics = append(statistics, fileScanner.Text() )
+		}
+
+
+		var gamesNumber, wonNumber int
+		var avgAttemps, temp float64
+
+		for _, n := range statistics{
+			userLine := strings.Split(n, ",")
+			if userLine[0] == user {
+				if userLine[3] == "win" {
+					wonNumber++
+				}
+				gamesNumber++
+				temp, _ = strconv.ParseFloat( userLine[2], 64 )
+				avgAttemps += temp
+			}
+			avgAttemps /= float64(gamesNumber)
+		}
+
+		fmt.Printf("Stats for %s:\n", user)
+		fmt.Printf("Games played: %d:\n", gamesNumber)
+		fmt.Printf("Games won: %d:\n", wonNumber)
+		fmt.Printf("Average attempts per game: %f:\n", avgAttemps)
+		
+        //return statistics
 
 }

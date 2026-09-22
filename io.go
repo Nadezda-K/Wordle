@@ -16,8 +16,6 @@ func getInput(scanner * bufio.Scanner) string {
 		os.Exit(0)
 	}
 	text := strings.TrimSpace(scanner.Text())
-	
-
 	return text
 }
 
