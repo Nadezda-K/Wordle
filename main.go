@@ -44,12 +44,6 @@ func main() {
 		fmt.Printf("Enter your guess:  ")
 		wordGuess = getInput(scanner)
 
-		if wordGuess == wordSecret {
-			fmt.Println("Congratulations! You've guessed the word correctly.")
-			winSatuts = "win"
-			break
-		}
-
 		is_valid := CheckValidWord(wordGuess, validWords)
 		if !is_valid {
 			i--
@@ -58,17 +52,26 @@ func main() {
 
 		numberOfAttempts++
 
+		if wordGuess == wordSecret {
+			fmt.Println("Congratulations! You've guessed the word correctly.")
+			winSatuts = "win"
+			break
+		}
+
 		wordFeedback := ColorLetters(wordGuess, wordSecret)
 
-		if is_valid {
-			//fmt.Printf("%s\n",wordGuess)
-			fmt.Printf("Feedback: %s\n", wordFeedback)
-			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
-			fmt.Printf("Remaining letters: %s \n", remainingStr)
-			fmt.Printf("Attempts remaining:  %d\n", idAttemps-i)
-		}
+		fmt.Printf("Feedback: %s\n", wordFeedback)
+		remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
+		fmt.Printf("Remaining letters: %s \n", remainingStr)
+		fmt.Printf("Attempts remaining:  %d\n", idAttemps-i)
+
 	}
 
+if winSatuts == "loss" {
+    fmt.Printf("Game over. The correct word was: %s\n", wordSecret)
+}
+
+	
 	// Open file, create it if it does not.
 	fileName := "stats.csv"
 	file, err := os.OpenFile(fileName, os.O_RDWR|os.O_APPEND|os.O_CREATE, 0660)
