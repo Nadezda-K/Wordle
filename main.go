@@ -27,14 +27,14 @@ func main() {
 	idSecret := CheckArguments(os.Args)
 
 	scanner := bufio.NewScanner(os.Stdin)	
-	fmt.Printf("Enter your username: ")
+	fmt.Printf("Enter your username:")
 	username := getInput(scanner)
 
 	wordSecret, validWords := GetWords(idSecret)
 
 
 
-	fmt.Printf(" Welcome to Wordle! Guess the 5-letter word.\n")
+	fmt.Printf("Welcome to Wordle! Guess the 5-letter word.\n")
 	
 	var wordGuess string
 	winSatuts := "loss"

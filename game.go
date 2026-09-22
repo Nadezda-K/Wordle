@@ -21,7 +21,7 @@ func CheckValidWord(guess string, words []string ) bool {
 	
 	allInOne := strings.Join(words, " ")
 	if !strings.Contains(allInOne, guess) {
-		fmt.Printf(" Word not in the list. Please enter a vallid word.\n")
+		fmt.Printf("Word not in the list. Please enter a vallid word.\n")
 		return false
 	}
 	return true
