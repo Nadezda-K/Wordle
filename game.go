@@ -19,12 +19,24 @@ func CheckValidWord(guess string, words []string ) bool {
 		}
 	}
 	
-	allInOne := strings.Join(words, " ")
-	if !strings.Contains(allInOne, guess) {
-		fmt.Printf("Word not in list. Please enter a valid word.\n")
-		return false
+	// allInOne := strings.Join(words, " ")
+	// if !strings.Contains(allInOne, guess) {
+	// 	fmt.Printf("Word not in list. Please enter a valid word.\n")
+	// 	return false
+	// }
+	// return true
+
+	for _, word := range words {
+		if word == guess {
+			wordExists = true
+			break
+		}
 	}
-	return true
+
+	if !wordExists {
+    	fmt.Printf("Word not in list. Please enter a valid word.\n")
+    	return false
+	}
 }
 
 func DeleteFromRemainig(ch string){
