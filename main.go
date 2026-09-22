@@ -98,7 +98,10 @@ func main() {
 		wordGuess = getInput(scanner)
 		fmt.Printf("%s\n",wordGuess)
 
-		if wordGuess == wordSecret
+		if wordGuess == wordSecret {
+			fmt.Println("Congratulations! You've guessed the word correctrly")
+			break
+		}
 
 		is_valid := CheckValidWord(wordGuess, validWords)
 		if !is_valid {
@@ -107,8 +110,6 @@ func main() {
 
 		wordFeedback := ColorLetters(wordGuess, wordSecret)
 
-
-
 		if is_valid {
 			fmt.Printf("Feedback: %s\n", wordFeedback)
 			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
@@ -116,5 +117,10 @@ func main() {
 			fmt.Printf("Attemps remaining: %d\n", idAttemps-i)
 		}		
 	}
+
+
+	fmt.Printf("Do you want to see your stats? (yes/no):")
+	statAnswer := getInput(scanner)
+	fmt.Printf("%s\n",statAnswer)
 
 }
