@@ -58,8 +58,8 @@ func GetWords(id int) (string, []string) {
 	}
 
 	if id <= 0 || id >= len(words) {
-		fmt.Println(Red+"Error number out of range of word's list."+Reset)
-		os.Exit(0)
+		fmt.Println("Invalid word number.")
+		return
 	} 
 
 	return words[id-1], words
