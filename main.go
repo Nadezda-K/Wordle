@@ -29,10 +29,10 @@ func main() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 	
-	fmt.Println("Enter your username:")
+	fmt.Printf("Enter your username:")
 	username := getInput(scanner)
 
-	fmt.Println("Welcome to Wordle! Guess the 5-letter word.")
+	fmt.Printf("Welcome to Wordle! Guess the 5-letter word.\n")
 	
 	var wordGuess string
 	winSatuts := "loss"
