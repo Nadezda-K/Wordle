@@ -38,7 +38,7 @@ func main() {
 	
 	var wordGuess string
 	winSatuts := "loss"
-	numberOfAttempts := 1
+	numberOfAttempts := 0
 	idAttemps := 6
 	for i:=1; i<=idAttemps; i++ {
 		fmt.Printf("Enter your guess:  ")
@@ -56,6 +56,8 @@ func main() {
 			continue
 		}
 
+		numberOfAttempts++
+
 		wordFeedback := ColorLetters(wordGuess, wordSecret)
 
 		if is_valid {
@@ -65,7 +67,6 @@ func main() {
 			fmt.Printf("Remaining letters: %s \n", remainingStr)
 			fmt.Printf("Attempts remaining:  %d\n", idAttemps-i)
 		}
-		numberOfAttempts++
 	}
 
 	// Open file, create it if it does not.
@@ -81,7 +82,7 @@ func main() {
 	gameStat += wordSecret + "," 
 	gameStat += strconv.Itoa(numberOfAttempts) + ","
 	gameStat += winSatuts + "\n"
-	fmt.Fprintf(file, gameStat)
+	fmt.Fprint(file, gameStat)
 
 
 
@@ -112,18 +113,16 @@ func GetStats(user string, statFile string ) {
         defer file.Close()
 
 		fileScanner := bufio.NewScanner(file)
-		if !fileScanner.Scan() {
-			if fileScanner.Err() != nil {
-				fmt.Println(Red+"Error reading file with word's list:"+Reset, fileScanner.Err())
-			}
-			os.Exit(0)
-		}
-
 		var statistics []string
+
 		for fileScanner.Scan() {
-			statistics = append(statistics, fileScanner.Text() )
+    		statistics = append(statistics, fileScanner.Text())
 		}
 
+		if fileScanner.Err() != nil {
+    		fmt.Println(Red+"Error reading statistics file:"+Reset, fileScanner.Err())
+    		os.Exit(0)
+		}
 
 		var gamesNumber, wonNumber int
 		var avgAttemps, temp float64
