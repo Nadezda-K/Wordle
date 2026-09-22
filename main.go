@@ -27,7 +27,7 @@ func main() {
 	idSecret := CheckArguments(os.Args)
 
 	scanner := bufio.NewScanner(os.Stdin)	
-	fmt.Printf("Enter your username:")
+	fmt.Printf("Enter your username: ")
 	username := getInput(scanner)
 
 	wordSecret, validWords := GetWords(idSecret)
@@ -41,7 +41,7 @@ func main() {
 	numberOfAttempts := 1
 	idAttemps := 6
 	for i:=1; i<=idAttemps; i++ {
-		fmt.Printf("Enter your guess:")
+		fmt.Printf("Enter your guess: ")
 		wordGuess = getInput(scanner)
 
 		if wordGuess == wordSecret {
