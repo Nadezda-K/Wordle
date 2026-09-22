@@ -26,6 +26,8 @@ func CheckValidWord(guess string, words []string ) bool {
 	// }
 	// return true
 
+	wordExists := false
+	
 	for _, word := range words {
 		if word == guess {
 			wordExists = true
