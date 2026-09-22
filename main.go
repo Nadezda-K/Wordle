@@ -58,7 +58,7 @@ func main() {
 		wordFeedback := ColorLetters(wordGuess, wordSecret)
 
 		if is_valid {
-			fmt.Printf("%s\n",wordGuess)
+			//fmt.Printf("%s\n",wordGuess)
 			fmt.Printf("Feedback: %s\n", wordFeedback)
 			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
 			fmt.Printf("Remaining letters: %s\n", remainingStr)
