@@ -27,7 +27,7 @@ func CheckValidWord(guess string, words []string ) bool {
 	// return true
 
 	wordExists := false
-	
+
 	for _, word := range words {
 		if word == guess {
 			wordExists = true
@@ -39,6 +39,8 @@ func CheckValidWord(guess string, words []string ) bool {
     	fmt.Printf("Word not in list. Please enter a valid word.\n")
     	return false
 	}
+
+	return true	
 }
 
 func DeleteFromRemainig(ch string){
