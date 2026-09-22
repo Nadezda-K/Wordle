@@ -50,7 +50,7 @@ func ColorLetters(guess string, secret string) string {
 				feedback += Yellow + strings.ToUpper( string(ch) ) + Reset
 			}
 		} else {
-			feedback += strings.ToUpper( string(ch) )
+			feedback += Gray + strings.ToUpper( string(ch) ) + Reset
 		}
 	}
 	return feedback
