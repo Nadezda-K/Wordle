@@ -14,7 +14,7 @@ func CheckValidWord(guess string, words []string ) bool {
 
 	for _, r := range strRune {
 		if r < 'a' || r > 'z' {
-			fmt.Printf("  Your guess must only conatin lowercase letters.\n")
+			fmt.Printf("Your guess must only conatin lowercase letters.\n")
 			return false
 		}
 	}
