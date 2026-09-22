@@ -8,20 +8,20 @@ import (
 func CheckValidWord(guess string, words []string ) bool {
 	strRune := []rune(guess)
 	if len(strRune) != 5 {
-		fmt.Println(Red+"Your guess must be exactly 5 letters."+Reset)
+		fmt.Printf("Your guess must be exactly 5 letters.\n")
 		return false
 	}
 
 	for _, r := range strRune {
 		if r < 'a' || r > 'z' {
-			fmt.Println(Red+"Your guess must only conatin lowercase letters."+Reset)
+			fmt.Printf("Your guess must only conatin lowercase letters.\n")
 			return false
 		}
 	}
 	
 	allInOne := strings.Join(words, " ")
 	if !strings.Contains(allInOne, guess) {
-		fmt.Println(Red+"Word not in the list. Please enter a vallid word."+Reset)
+		fmt.Printf("Word not in the list. Please enter a vallid word.\n")
 		return false
 	}
 	return true
