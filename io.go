@@ -21,13 +21,13 @@ func getInput(scanner * bufio.Scanner) string {
 
 func CheckArguments(args []string) int {
 	if len(args) != 2 {
-		fmt.Println("Invalid number of arguments.")
+		fmt.Println("Please provide a number as command line argument")
 		os.Exit(0)
 	}
 
 	id, err := strconv.Atoi(args[1])
 	if err != nil {
-		fmt.Println("Please provide a number as command line argument", err)
+		fmt.Println("Invalid command-line argument. Please launch with a valid number.")
 		os.Exit(0)
 	}
 	return id
