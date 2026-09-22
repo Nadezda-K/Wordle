@@ -21,24 +21,24 @@ func getInput(scanner * bufio.Scanner) string {
 
 func CheckArguments(args []string) int {
 	if len(args) != 2 {
-		fmt.Println(Red+"Invalid number of arguments."+Reset)
+		fmt.Println("Invalid number of arguments.")
 		os.Exit(0)
 	}
 
 	id, err := strconv.Atoi(args[1])
 	if err != nil {
-		fmt.Println(Red+"Invalid argument. Please enter a number"+Reset, err)
+		fmt.Println("Please provide a number as command line argument", err)
 		os.Exit(0)
 	}
 	return id
 }
 
 func GetWords(id int) (string, []string) {
-	fileName := "valid-wordle-words.txt" // for local
-	//fileName := "wordle-words.txt" // for tests
+	//fileName := "valid-wordle-words.txt" // for local
+	fileName := "wordle-words.txt" // for tests
 	file, err := os.Open(fileName)
 	if err != nil {
-		fmt.Println(Red+"Error opening file:"+Reset, err)
+		fmt.Println("Error opening file:", err)
 		os.Exit(0)
 	}
 	defer file.Close()
@@ -46,7 +46,7 @@ func GetWords(id int) (string, []string) {
 	fileScanner := bufio.NewScanner(file)
 	if !fileScanner.Scan() {
 		if fileScanner.Err() != nil {
-			fmt.Println(Red+"Error reading file with word's list:"+Reset, fileScanner.Err())
+			fmt.Println("Error reading file with word's list:", fileScanner.Err())
 		}
 		os.Exit(0)
 	}

@@ -37,7 +37,7 @@ func main() {
 	var wordGuess string
 	winSatuts := "loss"
 	numberOfAttempts := 1
-	idAttemps := 1
+	idAttemps := 6
 	for i:=1; i<=idAttemps; i++ {
 		fmt.Printf("Enter your guess: ")
 		wordGuess = getInput(scanner)
