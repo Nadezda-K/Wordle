@@ -62,7 +62,7 @@ func main() {
 			//fmt.Printf("%s\n",wordGuess)
 			fmt.Printf("Feedback: %s\n", wordFeedback)
 			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
-			fmt.Printf("Remaining letters: %s\n", remainingStr)
+			fmt.Printf("Remaining letters: %s \n", remainingStr)
 			fmt.Printf("Attempts remaining:  %d\n", idAttemps-i)
 		}
 		numberOfAttempts++

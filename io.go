@@ -44,18 +44,16 @@ func GetWords(id int) (string, []string) {
 	defer file.Close()
 
 	fileScanner := bufio.NewScanner(file)
-	if !fileScanner.Scan() {
-		if fileScanner.Err() != nil {
-			fmt.Println("Error reading file with word's list:", fileScanner.Err())
-		}
-		os.Exit(0)
-	}
-
 	var words[] string
 	for fileScanner.Scan() {
 		words = append(words, fileScanner.Text() )
 
 	}
+
+	if fileScanner.Err() != nil {
+		fmt.Println("Error reading file with word's list:", fileScanner.Err())
+	}
+	os.Exit(0)
 
 	if id <= 1 || id >= len(words) {
 		fmt.Println("Invalid word number.")
