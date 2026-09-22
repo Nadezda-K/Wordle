@@ -43,7 +43,6 @@ func main() {
 	for i:=1; i<=idAttemps; i++ {
 		fmt.Printf("Enter your guess:")
 		wordGuess = getInput(scanner)
-		fmt.Printf("%s\n",wordGuess)
 
 		if wordGuess == wordSecret {
 			fmt.Println("Congratulations! You've guessed the word correctrly")
@@ -59,6 +58,7 @@ func main() {
 		wordFeedback := ColorLetters(wordGuess, wordSecret)
 
 		if is_valid {
+			fmt.Printf("%s\n",wordGuess)
 			fmt.Printf("Feedback: %s\n", wordFeedback)
 			remainingStr := strings.ToUpper(strings.Join(RemainingLetters, " ") )
 			fmt.Printf("Remaining letters: %s\n", remainingStr)
