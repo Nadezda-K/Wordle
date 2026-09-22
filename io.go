@@ -59,6 +59,9 @@ func GetWords(id int) (string, []string) {
 
 	if id <= 0 || id >= len(words) {
 		fmt.Println("Invalid word number.")
+
+		scanner := bufio.NewScanner(os.Stdin)
+		pressEnter(scanner)
 		return "",[]string{}
 	} 
 

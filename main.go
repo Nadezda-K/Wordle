@@ -89,14 +89,16 @@ func main() {
 		GetStats(username, fileName)
 	}
 	
+	pressEnter(scanner)
+}
+
+func pressEnter(scanner * bufio.Scanner) {
 	fmt.Printf("Press Enter to exit...\n")
 	for {
 		getInput(scanner)
 		os.Exit(0)
 	}
-
 }
-
 
 func GetStats(user string, statFile string ) {
 	    // Open the file in read-only mode.
