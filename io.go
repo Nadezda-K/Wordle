@@ -52,8 +52,8 @@ func GetWords(id int) (string, []string) {
 
 	if fileScanner.Err() != nil {
 		fmt.Println("Error reading file with word's list:", fileScanner.Err())
+		os.Exit(0)
 	}
-	os.Exit(0)
 
 	if id <= 1 || id >= len(words) {
 		fmt.Println("Invalid word number.")
