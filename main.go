@@ -24,13 +24,14 @@ var RemainingLetters = []string{
 
 
 func main() {
+	scanner := bufio.NewScanner(os.Stdin)	
+	fmt.Printf("Enter your username:")
+	username := getInput(scanner)
+
 	idSecret := CheckArguments(os.Args)
 	wordSecret, validWords := GetWords(idSecret)
 
-	scanner := bufio.NewScanner(os.Stdin)
-	
-	fmt.Printf("Enter your username:")
-	username := getInput(scanner)
+
 
 	fmt.Printf("Welcome to Wordle! Guess the 5-letter word.\n")
 	
