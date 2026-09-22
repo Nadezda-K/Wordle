@@ -59,7 +59,7 @@ func GetWords(id int) (string, []string) {
 
 	if id <= 0 || id >= len(words) {
 		fmt.Println("Invalid word number.")
-		return
+		return "",[]string{}
 	} 
 
 	return words[id-1], words
