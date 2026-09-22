@@ -24,11 +24,12 @@ var RemainingLetters = []string{
 
 
 func main() {
+	idSecret := CheckArguments(os.Args)
+
 	scanner := bufio.NewScanner(os.Stdin)	
 	fmt.Printf("Enter your username:")
 	username := getInput(scanner)
 
-	idSecret := CheckArguments(os.Args)
 	wordSecret, validWords := GetWords(idSecret)
 
 
